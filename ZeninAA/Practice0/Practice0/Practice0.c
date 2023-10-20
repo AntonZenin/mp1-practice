@@ -30,7 +30,7 @@ int main()
     }
     if ((0 <= d) && (d < (r1 - r2)))
     {
-        printf("The circles are separated");
+        printf("The first circle inside second");
         return 0;
     }
     if (d == (r1 + r2) && (r1 != r2))
