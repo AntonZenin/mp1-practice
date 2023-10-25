@@ -6,7 +6,7 @@ int main()
 {
     int mod, a, A, attempt1 = 0;
     int number;
-    int B = 0, attempt2 = 0, left = 1, right = 1000;
+    int B = 0, attempt2 = 0, left = 0, right = 1000;
     char dis;
     srand((unsigned int)time(0));
     printf("Hello, welcome to the game 'Guess the number'!\n");
