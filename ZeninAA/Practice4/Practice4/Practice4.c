@@ -1,9 +1,13 @@
 #include <stdio.h>
 #include <string.h>
 
+#define N_SYMBOLS 5
+#define NAME_LEN 20
+#define N_PRODUCTS 12
+
 typedef struct {
-    char barcode[5];
-    char name[20];
+    char barcode[N_SYMBOLS];
+    char name[NAME_LEN];
     float price;
     float discount;
 }Product; 
@@ -24,19 +28,19 @@ Product scanProduct(Product products[], int size) {
     return emptyProduct; 
 }
 int main() {
-    Product products[12] = {
-        {"0001", "Bread", 60, 30},
-        {"0002", "Milk", 95, 0},
-        {"0003", "Cheese", 650, 0},
-        {"0004", "Butter", 140, 20},
-        {"0005", "Water", 35, 0},
-        {"0006", "Buiscuits", 115, 0},
-        {"0007", "Juice", 120, 50},
-        {"0008", "Lemonade", 106, 0},
-        {"0009", "Milk chocolate bar", 150, 5},
-        {"0010", "Sour cream", 90, 0},
-        {"0011", "Mars", 65, 0},
-        {"0012", "Nutella", 460, 10}
+    Product products[N_PRODUCTS] = {
+        {"0001", "Bread", 60.f, 30.f},
+        {"0002", "Milk", 95.f, 0.f},
+        {"0003", "Cheese", 650.f, 0.f},
+        {"0004", "Butter", 140.f, 20.f},
+        {"0005", "Water", 35.f, 0.f},
+        {"0006", "Buiscuits", 115.f, 0.f},
+        {"0007", "Juice", 120.f, 50.f},
+        {"0008", "Lemonade", 106.f, 0.f},
+        {"0009", "Milk chocolate bar", 150.f, 5.f},
+        {"0010", "Sour cream", 90.f, 0.f},
+        {"0011", "Mars", 65.f, 0.f},
+        {"0012", "Nutella", 460.f, 10.f}
     };
     int size = sizeof(products) / sizeof(products[0]);
 
