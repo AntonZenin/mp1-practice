@@ -50,8 +50,10 @@ void input_barcodes()
         printf("Do you want to exit the shop? (1 - no, 2 - yes)\n");
         scanf("%d", &choice);
         if ((choice != 1) && (choice != 2)) { 
-            printf("Error\n"); 
-            break;
+            do {
+                printf("Error\n");
+                scanf("%d", &choice);
+            } while ((choice != 1) && (choice != 2));
         }
         l = scan_product(code); 
         if (l < 0)
