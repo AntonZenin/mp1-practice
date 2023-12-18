@@ -4,17 +4,16 @@
 #define N_SYMBOLS 5
 #define N_PRODUCTS 12
 
-char* products[N_PRODUCTS] = { "Bread", "Milk", "Cheese", "Butter", "Water", "Buiscuits", 
-                
-                    "Juice", "Lemonade", "Milk chocolate bar", "Sour cream", "Mars", "Nutella" };
+char* products[N_PRODUCTS] = { "Bread", "Milk", "Cheese", "Butter", "Water", "Buiscuits",
+                               "Juice", "Lemonade", "Milk chocolate bar", "Sour cream",
+                               "Mars", "Nutella" };
 
 char* barcodes[N_PRODUCTS] = { "0001", "0002", "0003", "0004", "0005", "0006", 
-                    
-                    "0007", "0008", "0009", "0010", "0011", "0012" };
+                               "0007", "0008", "0009", "0010", "0011", "0012" };
 
-float prices[N_PRODUCTS] = { 60, 95, 650, 140, 35, 115, 120, 106, 150, 90, 65, 460 };
+float prices[N_PRODUCTS] = { 60.f, 95.f, 650.f, 140.f, 35.f, 115.f, 120.f, 106.f, 150.f, 90.f, 65.f, 460.f };
 
-float discounts[N_PRODUCTS] = { 30, 0, 0, 20, 0, 0, 50, 0, 40, 0, 0, 10 };
+float discounts[N_PRODUCTS] = { 30.f, 0.f, 0.f, 20.f, 0.f, 0.f, 50.f, 0.f, 40.f, 0.f, 0.f, 10.f };
 
 int receipt[N_PRODUCTS] = { 0 };
 
@@ -27,14 +26,12 @@ void print_final_Amount();
 
 void main()
 {
-    int i = 0;
     input_barcodes();
     print_receipt();
     print_final_Amount();
-
-    return 0;
 }
-scan_product(char* codes)
+
+int scan_product(char* codes)
 {
     int i = 0;
     for (; i < N_PRODUCTS; i++)
@@ -70,10 +67,10 @@ void input_barcodes()
             printf("Product not found\n");
             continue;
         }
-        receipt[l]+= quant; 
+        receipt[l]+= quant;  
     } while (choice == 1);
-    return;
 }
+
 void print_receipt()
 {
     int i;
@@ -86,8 +83,8 @@ void print_receipt()
                 prices[i], discounts[i], receipt[i], prices[i] * ((100 - discounts[i]) / 100) * receipt[i]);
         }
     }
-    return;
 }
+
 void print_final_Amount()
 {
     int i;
@@ -102,7 +99,6 @@ void print_final_Amount()
     }
     printf("\nYour amount to pay: %.2f\n", finalAmount);
     printf("We will be glad to see you again.\n");
-    return;
 }
  
 
