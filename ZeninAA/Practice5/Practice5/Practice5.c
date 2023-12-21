@@ -26,20 +26,22 @@ int compare(const void* a, const void* b) {
         return 0;
     }
 }
+
 void selectionSort(File* files, int count) {
     for (int i = 0; i < count - 1; i++) {
         int minIndex = i;
 
         for (int j = i + 1; j < count; j++) {
-            if (files[j].size < files[minIndex].size) { 
+            if (files[j].size < files[minIndex].size) {
                 minIndex = j;
             }
         }
         File temp = files[minIndex];
         files[minIndex] = files[i];
         files[i] = temp;
-    } 
+    }
 }
+
 void insertionSort(File* files, int count) {
     for (int i = 1; i < count; i++) {
         File key = files[i];
@@ -60,15 +62,15 @@ void merge(File* arr, int l, int m, int r) {
     File* L = (File*)malloc(n1 * sizeof(File));
     File* R = (File*)malloc(n2 * sizeof(File));
 
-    
+
     for (i = 0; i < n1; i++)
         L[i] = arr[l + i];
     for (j = 0; j < n2; j++)
         R[j] = arr[m + 1 + j];
 
-    i = 0;
-    j = 0;
-    k = l;
+    i = 0; 
+    j = 0;  
+    k = l; 
     while (i < n1 && j < n2) {
         if (L[i].size <= R[j].size) {
             arr[k] = L[i];
@@ -104,12 +106,14 @@ void mergeSort(File* arr, int l, int r) {
     }
 }
 void showFiles(const char* dirPath, int method) {
-    time_t t_start, t_finish; 
+    clock_t t_start;
+    clock_t t_finish;
+    double time_f;
     DIR* dir;
     struct dirent* entry;
     File files[MAX_FILES];
     int count = 0;
-    
+
     dir = opendir(dirPath);
 
     if (dir == NULL) {
@@ -119,7 +123,7 @@ void showFiles(const char* dirPath, int method) {
     while ((entry = readdir(dir)) != NULL) {
         char filePath[MAX_PATH_LEN];
         snprintf(filePath, sizeof(filePath), "%s/%s", dirPath, entry->d_name);
-        
+
         FILE* file = fopen(filePath, "rb");
         if (file != NULL) {
             fseek(file, 0L, SEEK_END);
@@ -131,55 +135,68 @@ void showFiles(const char* dirPath, int method) {
         }
     }
     closedir(dir);
-    
+
     switch (method) {
     case 1:
-        t_start = time(NULL);
-        selectionSort(files, count); 
-        t_finish = time(NULL); 
-        printf("Time: %lf\n", difftime(t_finish, t_start));
+        t_start = clock();
+        selectionSort(files, count);
+        t_finish = clock();
+        time_f = (double)((t_finish - t_start));
+
+        printf("Time: %.5lf\n", time_f);
         break;
     case 2:
-        t_start = time(NULL); 
+        t_start = clock();
         insertionSort(files, count);
-        t_finish = time(NULL);
-        printf("Time: %lf\n", difftime(t_finish, t_start));
+        t_finish = clock();
+        time_f = (double)((t_finish - t_start));
+
+        printf("Time: %.5lf\n", time_f);
         break;
     case 3:
-        t_start = time(NULL);
+        t_start = clock();
         mergeSort(files, 0, count - 1);
-        t_finish = time(NULL);
-        printf("Time: %lf\n", difftime(t_finish, t_start)); 
+        t_finish = clock();
+        time_f = (double)((t_finish - t_start));
+
+        printf("Time: %.5lf\n", time_f);
         break;
     default:
         printf("Invalid sorting method\n");
         return;
     }
-    
+
     for (int i = 0; i < count; i++) {
         printf("File name: %s, Size: %ld bytes\n", files[i].name, files[i].size);
     }
 }
 
 int main() {
-    
+
     char dirPath[MAX_PATH_LEN];
     int method;
 
-    
+
     printf("Input way: ");
     scanf("%s", dirPath);
 
-    
+
     printf("Sorting methods:\n");
     printf("1 - selection sort\n");
     printf("2 - insertion sort\n");
     printf("3 - merge sort\n");
     printf("Input sorting method: ");
-    scanf("%d", &method);
-
+    scanf("%d", &method); 
     
     showFiles(dirPath, method);
 
     return 0;
 }
+    
+
+    
+    
+    
+    
+
+    
