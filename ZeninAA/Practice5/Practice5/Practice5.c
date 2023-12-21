@@ -107,8 +107,8 @@ void mergeSort(File* arr, int l, int r) {
 }
 void showFiles(const char* dirPath, int method) {
     clock_t t_start;
-    clock_t t_finish;
-    double time_f;
+    clock_t t_finish = 0 ;
+    double time_f = 0;
     DIR* dir;
     struct dirent* entry;
     File files[MAX_FILES];
@@ -140,27 +140,18 @@ void showFiles(const char* dirPath, int method) {
     case 1:
         t_start = clock();
         selectionSort(files, count);
-        t_finish = clock();
-        time_f = (double)((t_finish - t_start));
-
-        printf("Time: %.5lf\n", time_f);
         break;
+    
     case 2:
         t_start = clock();
         insertionSort(files, count);
-        t_finish = clock();
-        time_f = (double)((t_finish - t_start));
-
-        printf("Time: %.5lf\n", time_f);
         break;
+
     case 3:
         t_start = clock();
         mergeSort(files, 0, count - 1);
-        t_finish = clock();
-        time_f = (double)((t_finish - t_start));
-
-        printf("Time: %.5lf\n", time_f);
         break;
+
     default:
         printf("Invalid sorting method\n");
         return;
@@ -172,6 +163,9 @@ void showFiles(const char* dirPath, int method) {
 }
 
 int main() {
+    clock_t t_start = 0; 
+    clock_t t_finish; 
+    double time_f; 
 
     char dirPath[MAX_PATH_LEN];
     int method;
@@ -189,6 +183,9 @@ int main() {
     scanf("%d", &method); 
     
     showFiles(dirPath, method);
+    t_finish = clock();
+    time_f = (double)((t_finish - t_start)); 
+    printf("Time: %.5lf\n", time_f); 
 
     return 0;
 }
