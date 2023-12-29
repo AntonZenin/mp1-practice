@@ -157,7 +157,6 @@ void main() {
     scanf("%s", path);
     number = files_number(path); 
     files_old = (File*)malloc(number * sizeof(File));
-
     d = opendir(path);
     if (d) {
         while ((ent = readdir(d)) != NULL) { 
@@ -192,30 +191,30 @@ void main() {
         scanf("%d", &choice);
         switch (choice) {
         case 1:
-            showFiles(&files_old[0], number);
+            showFiles(files_old, number);
             break;
         case 2:
             t_start = clock();
-            selectionSort(&files[0], number); 
+            selectionSort(files, number); 
             t_finish = clock();
-            showFiles(&files[0], number);
+            showFiles(files, number);
             time_f = (double)((t_finish - t_start)) / CLOCKS_PER_SEC; 
 
             printf("Time: %.5lf\n", time_f);
             break;
         case 3:
             t_start = clock();
-            insertionSort(&files[0], number); 
+            insertionSort(files, number); 
             t_finish = clock();
-            showFiles(&files[0], number);  
+            showFiles(files, number);  
             time_f = (double)((t_finish - t_start)) / CLOCKS_PER_SEC;
             printf("Time: %.5lf\n", time_f);
             break;
         case 4:
             t_start = clock();
-            mergeSort(&files[0], 0, number - 1);  
+            mergeSort(files, 0, number - 1);  
             t_finish = clock();
-            showFiles(&files[0], number); 
+            showFiles(files, number); 
             time_f = (double)((t_finish - t_start)) / CLOCKS_PER_SEC;
             printf("Time: %.5lf\n", time_f);
             break;
